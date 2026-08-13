@@ -27,11 +27,11 @@ export const Route = createFileRoute("/")({
         content:
           "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
       },
-      { property: "og:title", content: "Tapicería en Santiago | Casa Tapiz" },
+      { property: "og:title", content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
       {
         property: "og:description",
         content:
-          "Tapicero en Santiago y la Región Metropolitana. Renovamos tus muebles con oficio y consciencia ambiental.",
+          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
       },
       { property: "og:url", content: "/" },
     ],

@@ -77,21 +77,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Casa Tapiz | Tapicería de muebles ecosustentable" },
+      { title: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
       {
         name: "description",
         content:
-          "Taller de tapicería que renueva tus muebles con materiales responsables. Menos residuos, más historias.",
+          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
       },
       { name: "author", content: "Casa Tapiz" },
-      { property: "og:title", content: "Casa Tapiz | Tapicería ecosustentable" },
+      { property: "og:title", content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
       {
         property: "og:description",
-        content: "Renovamos tus muebles con oficio y consciencia ambiental.",
+        content: "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Casa Tapiz" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
+      { name: "twitter:description", content: "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/411d8238fa619e0479afa787690a7780/id-preview-1857cb2f--4435ee97-4967-45cf-8d1d-7c1cc8b3b2a9.lovable.app-1786636041047.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/411d8238fa619e0479afa787690a7780/id-preview-1857cb2f--4435ee97-4967-45cf-8d1d-7c1cc8b3b2a9.lovable.app-1786636041047.png" },
     ],
     links: [
       {
