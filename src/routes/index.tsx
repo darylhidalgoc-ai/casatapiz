@@ -21,16 +21,63 @@ import despues from "@/assets/despues.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Casa Tapiz | Tapicería de muebles ecosustentable" },
+      { title: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
       {
         name: "description",
         content:
-          "El primer taller de tapicería que renueva tus muebles con materiales responsables y cero mueble al vertedero.",
+          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
       },
-      { property: "og:title", content: "Casa Tapiz | Tapicería ecosustentable" },
+      { property: "og:title", content: "Tapicería en Santiago | Casa Tapiz" },
       {
         property: "og:description",
-        content: "Renovamos lo que amas con oficio, telas responsables y cero desperdicio.",
+        content:
+          "Tapicero en Santiago y la Región Metropolitana. Renovamos tus muebles con oficio y consciencia ambiental.",
+      },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Casa Tapiz",
+          description:
+            "Taller de tapicería ecosustentable en Santiago y la Región Metropolitana.",
+          url: "/",
+          telephone: "+56900000000",
+          image: logo.url,
+          priceRange: "$$",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Santiago",
+            addressRegion: "Región Metropolitana",
+            addressCountry: "CL",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: -33.4489,
+            longitude: -70.6693,
+          },
+          areaServed: [
+            {
+              "@type": "City",
+              name: "Santiago",
+              address: {
+                "@type": "PostalAddress",
+                addressRegion: "Región Metropolitana",
+                addressCountry: "CL",
+              },
+            },
+            {
+              "@type": "AdministrativeArea",
+              name: "Región Metropolitana de Santiago",
+              addressCountry: "CL",
+            },
+          ],
+          serviceType: "Tapicería de muebles",
+        }),
       },
     ],
   }),
@@ -63,6 +110,13 @@ const pasos = [
   { icon: Sofa, title: "Disfrutas", text: "Tu mueble, como nuevo, de vuelta en casa." },
 ];
 
+const comunas = [
+  { zona: "Santiago Centro", lista: ["Santiago", "Estación Central", "Maipú", "Pudahuel", "Quilicura"] },
+  { zona: "Santiago Oriente", lista: ["Las Condes", "Vitacura", "Providencia", "Ñuñoa", "La Reina", "Peñalolén", "Macul"] },
+  { zona: "Santiago Sur", lista: ["La Florida", "Puente Alto", "San Bernardo", "La Pintana", "El Bosque", "San Miguel"] },
+  { zona: "Santiago Norte / Poniente", lista: ["Recoleta", "Independencia", "Quinta Normal", "Lo Prado", "Cerro Navia", "Renca", "Huechuraba"] },
+];
+
 function Index() {
   return (
     <div className="bg-background">
@@ -83,10 +137,14 @@ function Index() {
               <span className="text-[var(--gold)]">nueva historia.</span>
             </h1>
             <span className="rule-gold mt-6" />
+            <p className="mt-2 inline-flex items-center rounded-full border border-[var(--gold)]/40 px-3 py-1 text-xs text-[var(--gold)]">
+              Tapicero en Santiago y toda la Región Metropolitana
+            </p>
             <p className="mt-6 max-w-md text-base leading-relaxed text-[var(--cream)]/80">
               En Casa Tapiz transformamos, renovamos y damos nueva vida a lo que hace de tu hogar{" "}
-              <span className="text-[var(--gold)]">tu lugar</span>. Somos un taller que trabaja lo
-              más verde posible: menos residuos, mejores materiales, muebles que duran.
+              <span className="text-[var(--gold)]">tu lugar</span>. Somos un taller de tapicería en
+              Santiago y la Región Metropolitana que trabaja lo más verde posible: menos residuos,
+              mejores materiales, muebles que duran.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -155,6 +213,33 @@ function Index() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* COBERTURA */}
+      <section className="bg-background py-16 lg:py-24">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <p className="eyebrow text-[var(--gold)]">Zona de servicio</p>
+          <h2 className="mt-3 text-3xl lg:text-4xl">
+            Tapicero en Santiago y toda la{" "}
+            <span className="text-[var(--gold)]">Región Metropolitana</span>
+          </h2>
+          <p className="mt-4 max-w-2xl text-muted-foreground">
+            Retiramos y entregamos a domicilio en Santiago Centro y comunas de la Región
+            Metropolitana. Si no encuentras la tuya, escríbenos y te confirmamos disponibilidad.
+          </p>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {comunas.map((grupo) => (
+              <div key={grupo.zona} className="rounded-sm border border-border p-5">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--forest)]">
+                  {grupo.zona}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {grupo.lista.join(" · ")}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -260,7 +345,8 @@ function Index() {
             </a>
           </div>
           <p className="mt-10 flex items-center justify-center gap-2 text-xs text-[var(--cream)]/60">
-            <MapPin className="size-3.5" /> Taller con retiro y entrega a domicilio
+            <MapPin className="size-3.5" /> Taller en Santiago · Retiro y entrega en toda la Región
+            Metropolitana
           </p>
           <p className="mt-2 text-xs text-[var(--cream)]/50">
             © {new Date().getFullYear()} Casa Tapiz · Tapicería de muebles
