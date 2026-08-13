@@ -40,13 +40,13 @@ export const Route = createFileRoute("/")({
 const pilares = [
   {
     icon: Recycle,
-    title: "Cero al vertedero",
-    text: "Reparamos estructuras y recuperamos espumas antes de pensar en reemplazar.",
+    title: "Tapizar es reciclar",
+    text: "Recuperamos estructuras, reutilizamos espumas y evitamos que un mueble termine en el vertedero.",
   },
   {
     icon: Leaf,
-    title: "Telas responsables",
-    text: "Linos, algodones y tejidos reciclados de proveedores con trazabilidad.",
+    title: "Telas que reciclan",
+    text: "Linos, algodones y tejidos reciclados que, al final de su vida, pueden volver a reciclarse.",
   },
   {
     icon: Hammer,
