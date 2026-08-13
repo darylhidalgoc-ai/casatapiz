@@ -218,14 +218,14 @@ function Index() {
             <span className="rule-gold mt-6" />
             <p className="mt-6 leading-relaxed text-muted-foreground">
               Cada mueble cuenta una historia, y en Casa Tapiz nos encargamos de que la tuya
-              continúe. Restauramos antes de reemplazar, elegimos materiales con menor huella y
-              reutilizamos los retazos en cojines y accesorios.
+              continúe. Para nosotros tapizar es reciclar: restauramos antes de reemplazar,
+              elegimos materiales con menor huella y gestionamos cada residuo de forma responsable.
             </p>
             <ul className="mt-8 space-y-3 text-sm">
               {[
                 "Muebles rescatados en vez de desechados",
-                "Espumas y maderas recuperadas cuando el mueble lo permite",
-                "Retazos reutilizados, residuos separados y reciclados",
+                "Espumas enviadas para ser reutilizadas",
+                "Telas reciclables y retazos reutilizados en cojines y accesorios",
                 "Asesoría honesta: si no vale la pena renovarlo, te lo decimos",
               ].map((item) => (
                 <li key={item} className="flex gap-3">
