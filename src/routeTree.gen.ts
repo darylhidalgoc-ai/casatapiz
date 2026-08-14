@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RestauracionDeMueblesSantiagoRouteImport } from './routes/restauracion-de-muebles-santiago'
 import { Route as TapiceriaSantiagoRouteImport } from './routes/tapiceria-santiago'
 import { Route as TapiceroSantiagoRouteImport } from './routes/tapicero-santiago'
 
@@ -18,6 +19,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RestauracionDeMueblesSantiagoRoute =
+  RestauracionDeMueblesSantiagoRouteImport.update({
+    id: '/restauracion-de-muebles-santiago',
+    path: '/restauracion-de-muebles-santiago',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TapiceriaSantiagoRoute = TapiceriaSantiagoRouteImport.update({
   id: '/tapiceria-santiago',
   path: '/tapiceria-santiago',
@@ -31,30 +38,47 @@ const TapiceroSantiagoRoute = TapiceroSantiagoRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tapiceria-santiago' | '/tapicero-santiago'
+  fullPaths:
+    | '/'
+    | '/restauracion-de-muebles-santiago'
+    | '/tapiceria-santiago'
+    | '/tapicero-santiago'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tapiceria-santiago' | '/tapicero-santiago'
-  id: '__root__' | '/' | '/tapiceria-santiago' | '/tapicero-santiago'
+  to:
+    | '/'
+    | '/restauracion-de-muebles-santiago'
+    | '/tapiceria-santiago'
+    | '/tapicero-santiago'
+  id:
+    | '__root__'
+    | '/'
+    | '/restauracion-de-muebles-santiago'
+    | '/tapiceria-santiago'
+    | '/tapicero-santiago'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  RestauracionDeMueblesSantiagoRoute: typeof RestauracionDeMueblesSantiagoRoute
   TapiceriaSantiagoRoute: typeof TapiceriaSantiagoRoute
   TapiceroSantiagoRoute: typeof TapiceroSantiagoRoute
 }
@@ -66,6 +90,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/restauracion-de-muebles-santiago': {
+      id: '/restauracion-de-muebles-santiago'
+      path: '/restauracion-de-muebles-santiago'
+      fullPath: '/restauracion-de-muebles-santiago'
+      preLoaderRoute: typeof RestauracionDeMueblesSantiagoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tapiceria-santiago': {
@@ -87,6 +118,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  RestauracionDeMueblesSantiagoRoute: RestauracionDeMueblesSantiagoRoute,
   TapiceriaSantiagoRoute: TapiceriaSantiagoRoute,
   TapiceroSantiagoRoute: TapiceroSantiagoRoute,
 }
