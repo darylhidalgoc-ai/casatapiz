@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TapiceriaSantiagoRouteImport } from './routes/tapiceria-santiago'
+import { Route as TapiceroSantiagoRouteImport } from './routes/tapicero-santiago'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const TapiceriaSantiagoRoute = TapiceriaSantiagoRouteImport.update({
   path: '/tapiceria-santiago',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TapiceroSantiagoRoute = TapiceroSantiagoRouteImport.update({
+  id: '/tapicero-santiago',
+  path: '/tapicero-santiago',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
+  '/tapicero-santiago': typeof TapiceroSantiagoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
+  '/tapicero-santiago': typeof TapiceroSantiagoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
+  '/tapicero-santiago': typeof TapiceroSantiagoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/tapiceria-santiago'
+  fullPaths: '/' | '/tapiceria-santiago' | '/tapicero-santiago'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/tapiceria-santiago'
-  id: '__root__' | '/' | '/tapiceria-santiago'
+  to: '/' | '/tapiceria-santiago' | '/tapicero-santiago'
+  id: '__root__' | '/' | '/tapiceria-santiago' | '/tapicero-santiago'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TapiceriaSantiagoRoute: typeof TapiceriaSantiagoRoute
+  TapiceroSantiagoRoute: typeof TapiceroSantiagoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TapiceriaSantiagoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tapicero-santiago': {
+      id: '/tapicero-santiago'
+      path: '/tapicero-santiago'
+      fullPath: '/tapicero-santiago'
+      preLoaderRoute: typeof TapiceroSantiagoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TapiceriaSantiagoRoute: TapiceriaSantiagoRoute,
+  TapiceroSantiagoRoute: TapiceroSantiagoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
