@@ -117,9 +117,28 @@ const comunas = [
   { zona: "Santiago Norte / Poniente", lista: ["Recoleta", "Independencia", "Quinta Normal", "Lo Prado", "Cerro Navia", "Renca", "Huechuraba"] },
 ];
 
+const servicios = [
+  {
+    to: "/tapiceria-santiago" as const,
+    title: "Tapicería en Santiago",
+    text: "Retapizado de sillones, sofás, sillas y cabeceras con telas duraderas y reciclables.",
+  },
+  {
+    to: "/tapicero-santiago" as const,
+    title: "Tapicero a domicilio",
+    text: "Evaluación, retiro y entrega en tu comuna de la Región Metropolitana.",
+  },
+  {
+    to: "/restauracion-de-muebles-santiago" as const,
+    title: "Restauración de muebles",
+    text: "Estructura, madera, espumas y tapiz para muebles antiguos con historia.",
+  },
+];
+
 function Index() {
   return (
     <div className="bg-background">
+      <SiteNav />
       {/* HERO */}
       <header className="relative overflow-hidden bg-[var(--forest-deep)]">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-14 pb-16 lg:grid-cols-2 lg:items-center lg:gap-4 lg:px-8 lg:pt-20 lg:pb-24">
