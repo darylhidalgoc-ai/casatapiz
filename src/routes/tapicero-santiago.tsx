@@ -1,3 +1,4 @@
+import { PresupuestoForm } from "@/components/PresupuestoForm";
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
@@ -82,6 +83,8 @@ function TapiceroPage() {
       />
 
       <ComunasGrid intro="Nuestro tapicero se desplaza por Santiago y la Región Metropolitana. Indícanos tu comuna al escribir y agendamos la visita." />
+
+      <PresupuestoForm />
 
       <Faq items={FAQ} />
     </Page>

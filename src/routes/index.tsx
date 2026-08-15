@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { PresupuestoForm } from "@/components/PresupuestoForm";
 import { SiteNav } from "@/components/ServiceLayout";
 import {
   Leaf,
@@ -284,6 +285,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <PresupuestoForm />
 
 
       {/* ANTES / DESPUÉS */}

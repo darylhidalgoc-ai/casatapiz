@@ -1,3 +1,4 @@
+import { PresupuestoForm } from "@/components/PresupuestoForm";
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
@@ -86,6 +87,8 @@ function TapiceriaPage() {
       />
 
       <ComunasGrid intro="Retiramos y entregamos tu mueble en Santiago Centro, sector oriente, sur, norte y poniente. Escríbenos con tu comuna y te confirmamos día de retiro." />
+
+      <PresupuestoForm />
 
       <Faq items={FAQ} />
     </Page>
