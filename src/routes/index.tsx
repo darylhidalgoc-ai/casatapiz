@@ -264,6 +264,28 @@ function Index() {
         </div>
       </section>
 
+      {/* SERVICIOS */}
+      <section className="border-t border-border bg-secondary py-16 lg:py-24">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <p className="eyebrow text-[var(--gold)]">Nuestros servicios</p>
+          <h2 className="mt-3 text-3xl lg:text-4xl">En qué te podemos ayudar</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {servicios.map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                className="rounded-sm border border-border bg-background p-6 transition-colors hover:border-[var(--gold)]"
+              >
+                <h3 className="text-xl">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                <span className="mt-4 inline-block text-sm text-[var(--gold)]">Ver más →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
       {/* ANTES / DESPUÉS */}
       <section className="bg-[var(--forest-deep)] py-16 lg:py-24">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
