@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      presupuestos: {
+        Row: {
+          comuna: string
+          created_at: string
+          id: string
+          material: string
+          mensaje: string | null
+          nombre: string
+          telefono: string
+          tipo_mueble: string
+        }
+        Insert: {
+          comuna: string
+          created_at?: string
+          id?: string
+          material: string
+          mensaje?: string | null
+          nombre: string
+          telefono: string
+          tipo_mueble: string
+        }
+        Update: {
+          comuna?: string
+          created_at?: string
+          id?: string
+          material?: string
+          mensaje?: string | null
+          nombre?: string
+          telefono?: string
+          tipo_mueble?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
