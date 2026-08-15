@@ -1,3 +1,4 @@
+import { PresupuestoForm } from "@/components/PresupuestoForm";
 import { createFileRoute } from "@tanstack/react-router";
 
 import {
@@ -82,6 +83,8 @@ function RestauracionPage() {
       />
 
       <ComunasGrid intro="Restauramos muebles de clientes de todo Santiago: desde Providencia y Las Condes hasta La Florida, Maipú, Puente Alto y comunas del norte de la Región Metropolitana." />
+
+      <PresupuestoForm />
 
       <Faq items={FAQ} />
     </Page>
