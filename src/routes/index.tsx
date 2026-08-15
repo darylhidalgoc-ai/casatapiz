@@ -285,6 +285,8 @@ function Index() {
         </div>
       </section>
 
+      <PresupuestoForm />
+
 
       {/* ANTES / DESPUÉS */}
       <section className="bg-[var(--forest-deep)] py-16 lg:py-24">
