@@ -1,0 +1,59 @@
+name: Build Vite App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Construir aplicación
+        run: npm run build
+
+      - name: Mostrar archivos generados
+        run: |
+          echo "=== CONTENIDO DEL PROYECTO ==="
+          ls -la
+          echo "=== BUSCANDO ARCHIVOS HTML ==="
+          find . -name "*.html" -not -path "./node_modules/*"
+          echo "=== BUSCANDO CARPETAS DE PRODUCCIÓN ==="
+          find . -maxdepth 3 -type d \
+            -not -path "./node_modules*" \
+            -not -path "./.git*" | sort
+
+      - name: Crear paquete del sitio
+        run: |
+          if [ -d "dist" ]; then
+            echo "Encontrado dist/"
+            cd dist
+            zip -r ../casatapiz-site.zip .
+          elif [ -d "build" ]; then
+            echo "Encontrado build/"
+            cd build
+            zip -r ../casatapiz-site.zip .
+          else
+            echo "ERROR: No se encontró dist/ ni build/"
+            exit 1
+          fi
+
+      - name: Subir sitio terminado
+        uses: actions/upload-artifact@v4
+        with:
+          name: casatapiz-site
+          path: casatapiz-site.zip
+          if-no-files-found: error
