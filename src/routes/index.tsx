@@ -2,6 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PresupuestoForm } from "@/components/PresupuestoForm";
 import { SiteNav } from "@/components/ServiceLayout";
+import { HeroSlider } from "@/components/HeroSlider";
+import { ArbolPorTapizado } from "@/components/ArbolPorTapizado";
+import { CtaBanda, CtaInline } from "@/components/CtaBanda";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+
 import {
   Leaf,
   Recycle,
