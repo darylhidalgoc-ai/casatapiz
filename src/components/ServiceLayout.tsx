@@ -199,10 +199,14 @@ export function Page({ children }: { children: ReactNode }) {
     <div className="bg-background">
       <SiteNav />
       {children}
+      <ArbolFranja />
+      <CtaBanda />
       <SiteFooter />
+      <WhatsAppFab />
     </div>
   );
 }
+
 
 export const SITE = "https://casatapiz.lovable.app";
 
