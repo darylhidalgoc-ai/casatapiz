@@ -2,7 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Leaf, MapPin, MessageCircle } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { ArbolFranja } from "@/components/ArbolPorTapizado";
+import { CtaBanda, CtaInline } from "@/components/CtaBanda";
+import { WhatsAppFab, WA_LINK } from "@/components/WhatsAppFab";
 import logo from "@/assets/casa-tapiz-logo.png.asset.json";
+
 
 export const COMUNAS = [
   { zona: "Santiago Centro y Poniente", lista: ["Santiago", "Estación Central", "Maipú", "Pudahuel", "Quinta Normal", "Lo Prado", "Cerro Navia", "Renca"] },
