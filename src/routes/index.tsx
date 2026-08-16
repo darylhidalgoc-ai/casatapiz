@@ -147,6 +147,9 @@ function Index() {
   return (
     <div className="bg-background">
       <SiteNav />
+      <HeroSlider />
+      <WhatsAppFab />
+
       {/* HERO */}
       <header className="relative overflow-hidden bg-[var(--forest-deep)]">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-14 pb-16 lg:grid-cols-2 lg:items-center lg:gap-4 lg:px-8 lg:pt-20 lg:pb-24">
@@ -217,6 +220,8 @@ function Index() {
               </div>
             ))}
           </div>
+          <CtaInline label="Cotiza tu tapizado verde" />
+
         </div>
       </section>
 
@@ -240,6 +245,10 @@ function Index() {
               </li>
             ))}
           </ol>
+          <div className="flex justify-center">
+            <CtaInline label="Empieza tu proyecto" />
+          </div>
+
         </div>
       </section>
 
@@ -267,6 +276,8 @@ function Index() {
               </div>
             ))}
           </div>
+          <CtaInline label="Consulta por tu comuna" note="Retiro y entrega en toda la Región Metropolitana" />
+
         </div>
       </section>
 
@@ -291,7 +302,10 @@ function Index() {
         </div>
       </section>
 
+      <ArbolPorTapizado />
+
       <PresupuestoForm />
+
 
 
       {/* ANTES / DESPUÉS */}
@@ -370,9 +384,14 @@ function Index() {
                 </li>
               ))}
             </ul>
+            <CtaInline label="Renueva tu mueble con nosotros" />
+
           </div>
         </div>
       </section>
+
+      <CtaBanda />
+
 
       {/* CONTACTO */}
       <footer className="bg-[var(--forest)] py-16 text-[var(--cream)]">
