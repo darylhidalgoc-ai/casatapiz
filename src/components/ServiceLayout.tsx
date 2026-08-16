@@ -45,6 +45,13 @@ export function SiteNav() {
             {item.label}
           </Link>
         ))}
+        <a
+          href={WA_LINK}
+          className="hidden items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2 text-xs font-medium text-[var(--forest-deep)] transition-colors hover:bg-[var(--gold-soft)] sm:inline-flex"
+        >
+          <MessageCircle className="size-3.5" /> Cotiza gratis
+        </a>
+
       </div>
     </nav>
   );
@@ -175,6 +182,8 @@ export function Bullets({ title, items }: { title: string; items: string[] }) {
             </li>
           ))}
         </ul>
+        <CtaInline note="Presupuesto sin costo · Retiro y entrega en tu comuna" />
+
       </div>
     </section>
   );
