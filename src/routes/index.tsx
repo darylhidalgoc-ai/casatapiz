@@ -33,13 +33,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
+          "Tapicería verde en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas y cabeceras con materiales responsables y plantamos un árbol por cada tapizado con Fundación Reforestemos.",
       },
       { property: "og:title", content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
       {
         property: "og:description",
         content:
-          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
+          "Tapicería verde en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas y cabeceras con materiales responsables y plantamos un árbol por cada tapizado con Fundación Reforestemos.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -52,7 +52,7 @@ export const Route = createFileRoute("/")({
           "@type": "LocalBusiness",
           name: "Casa Tapiz",
           description:
-            "Taller de tapicería ecosustentable en Santiago y la Región Metropolitana.",
+            "Taller de tapicería verde en Santiago y la Región Metropolitana: un árbol plantado por cada mueble tapizado, junto a Fundación Reforestemos.",
           url: "/",
           telephone: "+56900000000",
           image: logo.url,
