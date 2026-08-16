@@ -2,6 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PresupuestoForm } from "@/components/PresupuestoForm";
 import { SiteNav } from "@/components/ServiceLayout";
+import { HeroSlider } from "@/components/HeroSlider";
+import { ArbolPorTapizado } from "@/components/ArbolPorTapizado";
+import { CtaBanda, CtaInline } from "@/components/CtaBanda";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
+
 import {
   Leaf,
   Recycle,
@@ -28,13 +33,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
+          "Tapicería verde en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas y cabeceras con materiales responsables y plantamos un árbol por cada tapizado con Fundación Reforestemos.",
       },
       { property: "og:title", content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
       {
         property: "og:description",
         content:
-          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
+          "Tapicería verde en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas y cabeceras con materiales responsables y plantamos un árbol por cada tapizado con Fundación Reforestemos.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -47,7 +52,7 @@ export const Route = createFileRoute("/")({
           "@type": "LocalBusiness",
           name: "Casa Tapiz",
           description:
-            "Taller de tapicería ecosustentable en Santiago y la Región Metropolitana.",
+            "Taller de tapicería verde en Santiago y la Región Metropolitana: un árbol plantado por cada mueble tapizado, junto a Fundación Reforestemos.",
           url: "/",
           telephone: "+56900000000",
           image: logo.url,
@@ -142,6 +147,9 @@ function Index() {
   return (
     <div className="bg-background">
       <SiteNav />
+      <HeroSlider />
+      <WhatsAppFab />
+
       {/* HERO */}
       <header className="relative overflow-hidden bg-[var(--forest-deep)]">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-14 pb-16 lg:grid-cols-2 lg:items-center lg:gap-4 lg:px-8 lg:pt-20 lg:pb-24">
@@ -212,6 +220,8 @@ function Index() {
               </div>
             ))}
           </div>
+          <CtaInline label="Cotiza tu tapizado verde" />
+
         </div>
       </section>
 
@@ -235,6 +245,10 @@ function Index() {
               </li>
             ))}
           </ol>
+          <div className="flex justify-center">
+            <CtaInline label="Empieza tu proyecto" />
+          </div>
+
         </div>
       </section>
 
@@ -262,6 +276,8 @@ function Index() {
               </div>
             ))}
           </div>
+          <CtaInline label="Consulta por tu comuna" note="Retiro y entrega en toda la Región Metropolitana" />
+
         </div>
       </section>
 
@@ -286,7 +302,10 @@ function Index() {
         </div>
       </section>
 
+      <ArbolPorTapizado />
+
       <PresupuestoForm />
+
 
 
       {/* ANTES / DESPUÉS */}
@@ -365,9 +384,14 @@ function Index() {
                 </li>
               ))}
             </ul>
+            <CtaInline label="Renueva tu mueble con nosotros" />
+
           </div>
         </div>
       </section>
+
+      <CtaBanda />
+
 
       {/* CONTACTO */}
       <footer className="bg-[var(--forest)] py-16 text-[var(--cream)]">

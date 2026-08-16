@@ -2,7 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Leaf, MapPin, MessageCircle } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { ArbolFranja } from "@/components/ArbolPorTapizado";
+import { CtaBanda, CtaInline } from "@/components/CtaBanda";
+import { WhatsAppFab, WA_LINK } from "@/components/WhatsAppFab";
 import logo from "@/assets/casa-tapiz-logo.png.asset.json";
+
 
 export const COMUNAS = [
   { zona: "Santiago Centro y Poniente", lista: ["Santiago", "Estación Central", "Maipú", "Pudahuel", "Quinta Normal", "Lo Prado", "Cerro Navia", "Renca"] },
@@ -41,6 +45,13 @@ export function SiteNav() {
             {item.label}
           </Link>
         ))}
+        <a
+          href={WA_LINK}
+          className="hidden items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2 text-xs font-medium text-[var(--forest-deep)] transition-colors hover:bg-[var(--gold-soft)] sm:inline-flex"
+        >
+          <MessageCircle className="size-3.5" /> Cotiza gratis
+        </a>
+
       </div>
     </nav>
   );
@@ -171,6 +182,8 @@ export function Bullets({ title, items }: { title: string; items: string[] }) {
             </li>
           ))}
         </ul>
+        <CtaInline note="Presupuesto sin costo · Retiro y entrega en tu comuna" />
+
       </div>
     </section>
   );
@@ -199,10 +212,14 @@ export function Page({ children }: { children: ReactNode }) {
     <div className="bg-background">
       <SiteNav />
       {children}
+      <ArbolFranja />
+      <CtaBanda />
       <SiteFooter />
+      <WhatsAppFab />
     </div>
   );
 }
+
 
 export const SITE = "https://casatapiz.lovable.app";
 
