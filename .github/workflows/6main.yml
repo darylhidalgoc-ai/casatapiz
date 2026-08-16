@@ -1,0 +1,43 @@
+name: Build Lovable App
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Inspect build output
+        run: |
+          echo "===== ROOT ====="
+          ls -la
+
+          echo "===== DIRECTORIES ====="
+          find . -maxdepth 5 -type d \
+            -not -path "./node_modules*" \
+            -not -path "./.git*" \
+            | sort
+
+          echo "===== FILES ====="
+          find . -maxdepth 5 -type f \
+            -not -path "./node_modules/*" \
+            -not -path "./.git/*" \
+            | sort | head -300
