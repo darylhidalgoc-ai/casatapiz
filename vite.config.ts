@@ -4,7 +4,9 @@ export default defineConfig({
   tanstackStart: {
     server: {
       entry: "server",
-      preset: "node-server",
     },
+  },
+  nitro: {
+    preset: "node-server",
   },
 });
