@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -22,22 +22,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build application
+      - name: Build
         run: npm run build
 
-      - name: Inspect build output
+      - name: Package application
         run: |
-          echo "===== ROOT ====="
-          ls -la
+          cd .output
+          zip -r ../casatapiz-output.zip .
 
-          echo "===== DIRECTORIES ====="
-          find . -maxdepth 5 -type d \
-            -not -path "./node_modules*" \
-            -not -path "./.git*" \
-            | sort
-
-          echo "===== FILES ====="
-          find . -maxdepth 5 -type f \
-            -not -path "./node_modules/*" \
-            -not -path "./.git/*" \
-            | sort | head -300
+      - name: Upload application
+        uses: actions/upload-artifact@v4
+        with:
+          name: casatapiz-output
+          path: casatapiz-output.zip
+          if-no-files-found: error
