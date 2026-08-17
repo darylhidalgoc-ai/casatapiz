@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Leaf, MapPin, MessageCircle } from "lucide-react";
+import { Instagram, Leaf, MapPin, MessageCircle, TreePine } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { ArbolFranja } from "@/components/ArbolPorTapizado";
