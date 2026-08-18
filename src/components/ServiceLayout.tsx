@@ -60,14 +60,17 @@ export function SiteNav() {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[var(--forest)] py-16 text-[var(--cream)]">
+    <footer className="relative overflow-hidden bg-[var(--forest)] py-16 text-[var(--cream)]">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        <TreePine
-          className="mx-auto size-10 text-[var(--gold)]"
-          strokeWidth={1.25}
-          aria-hidden="true"
+        <img
+          src={arbolFooter}
+          alt="Árbol ilustrado que representa el compromiso de Casa Tapiz: un árbol por cada tapizado"
+          width={320}
+          height={320}
+          loading="lazy"
+          className="mx-auto h-40 w-auto drop-shadow-lg"
         />
-        <p className="mt-3 text-xs uppercase tracking-[0.2em] text-[var(--cream)]/60">
+        <p className="mt-3 text-xs uppercase tracking-[0.2em] text-[var(--gold)]">
           Un árbol por cada tapizado
         </p>
         <h2 className="mt-4 text-3xl lg:text-4xl">Bienvenidos a Casa Tapiz.</h2>
