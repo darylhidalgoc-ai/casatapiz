@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import logo from "@/assets/casa-tapiz-logo.png.asset.json";
+import arbolFooter from "@/assets/arbol-footer.png";
 import heroSillon from "@/assets/hero-sillon.jpg";
 import telas from "@/assets/telas.jpg";
 import antes from "@/assets/antes.jpg";

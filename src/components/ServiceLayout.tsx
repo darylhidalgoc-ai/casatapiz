@@ -6,6 +6,7 @@ import { ArbolFranja } from "@/components/ArbolPorTapizado";
 import { CtaBanda, CtaInline } from "@/components/CtaBanda";
 import { WhatsAppFab, WA_LINK } from "@/components/WhatsAppFab";
 import logo from "@/assets/casa-tapiz-logo.png.asset.json";
+import arbolFooter from "@/assets/arbol-footer.png";
 
 
 export const COMUNAS = [
