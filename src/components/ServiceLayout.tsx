@@ -7,7 +7,7 @@ import { CtaBanda, CtaInline } from "@/components/CtaBanda";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { WhatsAppFab, WA_LINK } from "@/components/WhatsAppFab";
 import { SITE as SITE_INFO, TEL_LINK } from "@/config/site";
-import logo from "@/assets/casa-tapiz-logo.png.asset.json";
+import logo from "@/assets/casa-tapiz-logo.png";
 import arbolFooter from "@/assets/arbol-footer.png";
 
 export const COMUNAS = [
@@ -69,7 +69,7 @@ export function SiteNav() {
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-6 py-4 lg:px-8">
         <Link to="/" className="mr-auto">
           <img
-            src={logo.url}
+            src={logo}
             alt="Casa Tapiz"
             width={160}
             height={160}
@@ -311,7 +311,7 @@ export function serviceLd({
     provider: {
       "@type": "LocalBusiness",
       name: "Casa Tapiz",
-      image: logo.url,
+      image: `${SITE_INFO.url}/og-casatapiz.jpg`,
       telephone: `+${SITE_INFO.whatsapp}`,
       priceRange: "$$",
       address: {

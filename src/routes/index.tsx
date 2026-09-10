@@ -25,7 +25,7 @@ import {
   Phone,
 } from "lucide-react";
 
-import logo from "@/assets/casa-tapiz-logo.png.asset.json";
+import logo from "@/assets/casa-tapiz-logo.png";
 import arbolFooter from "@/assets/arbol-footer.png";
 import heroSillon from "@/assets/hero-sillon.jpg";
 import telas from "@/assets/telas.jpg";
@@ -91,7 +91,7 @@ export const Route = createFileRoute("/")({
             "Taller de tapicería verde en Santiago y la Región Metropolitana: un árbol plantado por cada mueble tapizado, junto a Fundación Reforestemos.",
           url: "/",
           telephone: `+${SITE_INFO.whatsapp}`,
-          image: logo.url,
+          image: `${SITE_INFO.url}/og-casatapiz.jpg`,
           priceRange: "$$",
           address: {
             "@type": "PostalAddress",
@@ -213,7 +213,7 @@ function Index() {
         <div className="mx-auto grid max-w-6xl gap-10 px-6 pt-14 pb-16 lg:grid-cols-2 lg:items-center lg:gap-4 lg:px-8 lg:pt-20 lg:pb-24">
           <div className="text-[var(--cream)]">
             <img
-              src={logo.url}
+              src={logo}
               alt="Casa Tapiz, tapicería de muebles"
               width={320}
               height={320}

@@ -48,12 +48,17 @@ jobs:
         run: |
           cat > static/.htaccess <<'EOF'
           Options -MultiViews
+          DirectoryIndex index.html
           RewriteEngine On
 
-          # /tapiceria-santiago -> tapiceria-santiago.html
+          # Mantener URLs limpias: /tapicero-santiago sirve tapicero-santiago.html.
           RewriteCond %{REQUEST_FILENAME} !-d
           RewriteCond %{REQUEST_FILENAME}.html -f
-          RewriteRule ^(.+)$ $1.html [L]
+          RewriteRule ^(.+?)/?$ $1.html [L]
+
+          # Redirigir enlaces antiguos con .html hacia la URL canónica limpia.
+          RewriteCond %{THE_REQUEST} \s/+(.+?)\.html(?:[?\s]) [NC]
+          RewriteRule ^ /%1 [R=301,L,NE]
 
           ErrorDocument 404 /index.html
 
