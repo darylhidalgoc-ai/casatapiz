@@ -8,6 +8,7 @@ import { CtaBanda, CtaInline, TrustStrip } from "@/components/CtaBanda";
 import { WhatsAppFab, WA_LINK } from "@/components/WhatsAppFab";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Testimonios } from "@/components/Testimonios";
+import { TrabajosReales } from "@/components/TrabajosReales";
 import { SITE as SITE_INFO, TEL_LINK } from "@/config/site";
 
 import {
@@ -29,8 +30,6 @@ import logo from "@/assets/casa-tapiz-logo.png";
 import arbolFooter from "@/assets/arbol-footer.png";
 import heroSillon from "@/assets/hero-sillon.jpg";
 import telas from "@/assets/telas.jpg";
-import antes from "@/assets/antes.jpg";
-import despues from "@/assets/despues.jpg";
 
 const FAQ_HOME = [
   {
@@ -372,48 +371,7 @@ function Index() {
 
       <PresupuestoForm />
 
-      {/* ANTES / DESPUÉS */}
-      <section className="bg-[var(--forest-deep)] py-16 lg:py-24">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <h2 className="text-center text-3xl text-[var(--cream)] lg:text-4xl">
-            Renovamos lo que amas.
-          </h2>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2">
-            {[
-              {
-                src: antes,
-                label: "Antes",
-                alt: "Sofá de cuero café desgastado antes del trabajo",
-              },
-              {
-                src: despues,
-                label: "Después",
-                alt: "El mismo sofá retapizado en tela verde oliva",
-              },
-            ].map((img) => (
-              <figure key={img.label} className="relative overflow-hidden rounded-sm">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  width={900}
-                  height={700}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-                <figcaption
-                  className={`absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-xs tracking-widest uppercase ${
-                    img.label === "Antes"
-                      ? "bg-[var(--forest-deep)]/85 text-[var(--cream)]"
-                      : "bg-[var(--gold)] text-[var(--forest-deep)]"
-                  }`}
-                >
-                  {img.label}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TrabajosReales />
 
       <Testimonios />
 
