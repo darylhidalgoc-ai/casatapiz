@@ -1,8 +1,23 @@
-import { MessageCircle, Clock, Truck, BadgeCheck } from "lucide-react";
+import {
+  MessageCircle,
+  Clock,
+  Truck,
+  BadgeCheck,
+  ShieldCheck,
+  TreePine,
+  Phone,
+} from "lucide-react";
 
+import { TEL_LINK } from "@/config/site";
 import { WA_LINK } from "@/components/WhatsAppFab";
 
-export function CtaInline({ label = "Cotiza tu mueble por WhatsApp", note }: { label?: string; note?: string }) {
+export function CtaInline({
+  label = "Cotiza tu mueble por WhatsApp",
+  note,
+}: {
+  label?: string;
+  note?: string;
+}) {
   return (
     <div className="mt-10 flex flex-wrap items-center gap-x-4 gap-y-2">
       <a
@@ -11,10 +26,39 @@ export function CtaInline({ label = "Cotiza tu mueble por WhatsApp", note }: { l
       >
         <MessageCircle className="size-4" /> {label}
       </a>
+      <a
+        href={TEL_LINK}
+        className="inline-flex items-center gap-2 rounded-full border border-[var(--forest)]/25 px-6 py-3 text-sm text-[var(--forest)] transition-colors hover:bg-[var(--forest)]/5"
+      >
+        <Phone className="size-4" /> Llamar
+      </a>
       <span className="text-xs text-muted-foreground">
         {note ?? "Respuesta el mismo día · Presupuesto sin costo"}
       </span>
     </div>
+  );
+}
+
+const CONFIANZA = [
+  { icon: Clock, label: "Respuesta el mismo día" },
+  { icon: BadgeCheck, label: "Presupuesto sin costo" },
+  { icon: Truck, label: "Retiro y entrega en tu comuna" },
+  { icon: ShieldCheck, label: "Garantía en terminaciones y costuras" },
+  { icon: TreePine, label: "Un árbol por cada tapizado" },
+];
+
+export function TrustStrip() {
+  return (
+    <section className="border-b border-border bg-background">
+      <ul className="mx-auto grid max-w-6xl gap-x-6 gap-y-3 px-6 py-6 text-sm sm:grid-cols-2 lg:grid-cols-5 lg:px-8">
+        {CONFIANZA.map((item) => (
+          <li key={item.label} className="flex items-center gap-2 text-muted-foreground">
+            <item.icon className="size-4 shrink-0 text-[var(--gold)]" strokeWidth={1.6} />
+            <span>{item.label}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -34,6 +78,12 @@ export function CtaBanda() {
             <MessageCircle className="size-4" /> Escríbenos por WhatsApp
           </a>
           <a
+            href={TEL_LINK}
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/50 px-6 py-3 text-sm transition-colors hover:bg-[var(--gold)]/10"
+          >
+            <Phone className="size-4" /> Llamar ahora
+          </a>
+          <a
             href="#presupuesto"
             className="inline-flex items-center rounded-full border border-[var(--gold)]/50 px-6 py-3 text-sm transition-colors hover:bg-[var(--gold)]/10"
           >
@@ -49,6 +99,9 @@ export function CtaBanda() {
           </li>
           <li className="flex items-center gap-2">
             <Truck className="size-3.5 text-[var(--gold)]" /> Retiro en tu comuna
+          </li>
+          <li className="flex items-center gap-2">
+            <ShieldCheck className="size-3.5 text-[var(--gold)]" /> Garantía en terminaciones
           </li>
         </ul>
       </div>

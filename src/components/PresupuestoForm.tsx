@@ -5,8 +5,12 @@ import { toast } from "sonner";
 
 import { COMUNAS } from "@/components/ServiceLayout";
 import { supabase } from "@/integrations/supabase/client";
+import { SITE, waLink } from "@/config/site";
+import { track } from "@/lib/analytics";
 
-export const WHATSAPP_NUMBER = "56900000000";
+export const WHATSAPP_NUMBER = SITE.whatsapp;
+
+const MATERIAL_POR_DEFECTO = "No lo sé, necesito asesoría";
 
 const TIPOS = [
   "Sillón / Sofá",
@@ -28,9 +32,7 @@ const MATERIALES = [
   "No lo sé, necesito asesoría",
 ];
 
-const TODAS_LAS_COMUNAS = COMUNAS.flatMap((g) => g.lista).sort((a, b) =>
-  a.localeCompare(b, "es"),
-);
+const TODAS_LAS_COMUNAS = COMUNAS.flatMap((g) => g.lista).sort((a, b) => a.localeCompare(b, "es"));
 
 const schema = z.object({
   nombre: z.string().trim().min(2, "Cuéntanos tu nombre").max(100),
@@ -41,7 +43,7 @@ const schema = z.object({
     .max(30)
     .regex(/^[0-9+()\s-]+$/, "Solo números y símbolos telefónicos"),
   tipo_mueble: z.string().trim().min(1, "Selecciona el tipo de mueble").max(60),
-  material: z.string().trim().min(1, "Selecciona un material").max(60),
+  material: z.string().trim().max(60).optional(),
   comuna: z.string().trim().min(1, "Selecciona tu comuna").max(60),
   mensaje: z.string().trim().max(1000).optional(),
 });
@@ -72,11 +74,12 @@ export function PresupuestoForm() {
     setEnviando(true);
 
     const data = parsed.data;
+    const material = data.material?.trim() || MATERIAL_POR_DEFECTO;
     const { error } = await supabase.from("presupuestos").insert({
       nombre: data.nombre,
       telefono: data.telefono,
       tipo_mueble: data.tipo_mueble,
-      material: data.material,
+      material,
       comuna: data.comuna,
       mensaje: data.mensaje || null,
     });
@@ -87,12 +90,17 @@ export function PresupuestoForm() {
       return;
     }
 
+    track("submit_presupuesto", {
+      tipo_mueble: data.tipo_mueble,
+      comuna: data.comuna,
+    });
+
     const texto = [
       `Hola Casa Tapiz 👋 Quiero un presupuesto rápido.`,
       `Nombre: ${data.nombre}`,
       `Teléfono: ${data.telefono}`,
       `Mueble: ${data.tipo_mueble}`,
-      `Material: ${data.material}`,
+      `Material: ${material}`,
       `Comuna: ${data.comuna}`,
       data.mensaje ? `Detalle: ${data.mensaje}` : null,
     ]
@@ -101,11 +109,7 @@ export function PresupuestoForm() {
 
     toast.success("¡Listo! Te abrimos WhatsApp con el mensaje preparado.");
     form.reset();
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+    window.open(waLink(texto), "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -125,8 +129,16 @@ export function PresupuestoForm() {
             <label htmlFor="nombre" className="text-sm text-[var(--cream)]/80">
               Nombre
             </label>
-            <input id="nombre" name="nombre" maxLength={100} className={fieldClass} placeholder="Tu nombre" />
-            {errores['nombre'] && <p className="mt-1 text-xs text-[var(--gold)]">{errores['nombre']}</p>}
+            <input
+              id="nombre"
+              name="nombre"
+              maxLength={100}
+              className={fieldClass}
+              placeholder="Tu nombre"
+            />
+            {errores["nombre"] && (
+              <p className="mt-1 text-xs text-[var(--gold)]">{errores["nombre"]}</p>
+            )}
           </div>
 
           <div>
@@ -141,7 +153,9 @@ export function PresupuestoForm() {
               className={fieldClass}
               placeholder="+56 9 ..."
             />
-            {errores['telefono'] && <p className="mt-1 text-xs text-[var(--gold)]">{errores['telefono']}</p>}
+            {errores["telefono"] && (
+              <p className="mt-1 text-xs text-[var(--gold)]">{errores["telefono"]}</p>
+            )}
           </div>
 
           <div>
@@ -156,24 +170,26 @@ export function PresupuestoForm() {
                 </option>
               ))}
             </select>
-            {errores['tipo_mueble'] && (
-              <p className="mt-1 text-xs text-[var(--gold)]">{errores['tipo_mueble']}</p>
+            {errores["tipo_mueble"] && (
+              <p className="mt-1 text-xs text-[var(--gold)]">{errores["tipo_mueble"]}</p>
             )}
           </div>
 
           <div>
             <label htmlFor="material" className="text-sm text-[var(--cream)]/80">
-              Material o tela
+              Material o tela (opcional)
             </label>
             <select id="material" name="material" defaultValue="" className={fieldClass}>
-              <option value="">Selecciona…</option>
+              <option value="">No lo sé, necesito asesoría</option>
               {MATERIALES.map((m) => (
                 <option key={m} value={m}>
                   {m}
                 </option>
               ))}
             </select>
-            {errores['material'] && <p className="mt-1 text-xs text-[var(--gold)]">{errores['material']}</p>}
+            {errores["material"] && (
+              <p className="mt-1 text-xs text-[var(--gold)]">{errores["material"]}</p>
+            )}
           </div>
 
           <div className="sm:col-span-2">
@@ -191,7 +207,9 @@ export function PresupuestoForm() {
                 Otra comuna de la Región Metropolitana
               </option>
             </select>
-            {errores['comuna'] && <p className="mt-1 text-xs text-[var(--gold)]">{errores['comuna']}</p>}
+            {errores["comuna"] && (
+              <p className="mt-1 text-xs text-[var(--gold)]">{errores["comuna"]}</p>
+            )}
           </div>
 
           <div className="sm:col-span-2">
@@ -206,7 +224,9 @@ export function PresupuestoForm() {
               className={fieldClass}
               placeholder="Medidas, estado de la espuma, color que buscas…"
             />
-            {errores['mensaje'] && <p className="mt-1 text-xs text-[var(--gold)]">{errores['mensaje']}</p>}
+            {errores["mensaje"] && (
+              <p className="mt-1 text-xs text-[var(--gold)]">{errores["mensaje"]}</p>
+            )}
           </div>
 
           <div className="sm:col-span-2">

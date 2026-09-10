@@ -1,19 +1,59 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Leaf, MapPin, MessageCircle, TreePine } from "lucide-react";
+import { Instagram, Leaf, Mail, MapPin, MessageCircle, Phone, TreePine } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { ArbolFranja } from "@/components/ArbolPorTapizado";
 import { CtaBanda, CtaInline } from "@/components/CtaBanda";
+import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { WhatsAppFab, WA_LINK } from "@/components/WhatsAppFab";
+import { SITE as SITE_INFO, TEL_LINK } from "@/config/site";
 import logo from "@/assets/casa-tapiz-logo.png.asset.json";
 import arbolFooter from "@/assets/arbol-footer.png";
 
-
 export const COMUNAS = [
-  { zona: "Santiago Centro y Poniente", lista: ["Santiago", "Estación Central", "Maipú", "Pudahuel", "Quinta Normal", "Lo Prado", "Cerro Navia", "Renca"] },
-  { zona: "Santiago Oriente", lista: ["Las Condes", "Vitacura", "Lo Barnechea", "Providencia", "Ñuñoa", "La Reina", "Peñalolén", "Macul"] },
-  { zona: "Santiago Sur", lista: ["La Florida", "Puente Alto", "San Bernardo", "La Cisterna", "El Bosque", "San Miguel", "La Pintana", "Pedro Aguirre Cerda"] },
-  { zona: "Santiago Norte y alrededores", lista: ["Recoleta", "Independencia", "Conchalí", "Huechuraba", "Quilicura", "Colina", "Lampa"] },
+  {
+    zona: "Santiago Centro y Poniente",
+    lista: [
+      "Santiago",
+      "Estación Central",
+      "Maipú",
+      "Pudahuel",
+      "Quinta Normal",
+      "Lo Prado",
+      "Cerro Navia",
+      "Renca",
+    ],
+  },
+  {
+    zona: "Santiago Oriente",
+    lista: [
+      "Las Condes",
+      "Vitacura",
+      "Lo Barnechea",
+      "Providencia",
+      "Ñuñoa",
+      "La Reina",
+      "Peñalolén",
+      "Macul",
+    ],
+  },
+  {
+    zona: "Santiago Sur",
+    lista: [
+      "La Florida",
+      "Puente Alto",
+      "San Bernardo",
+      "La Cisterna",
+      "El Bosque",
+      "San Miguel",
+      "La Pintana",
+      "Pedro Aguirre Cerda",
+    ],
+  },
+  {
+    zona: "Santiago Norte y alrededores",
+    lista: ["Recoleta", "Independencia", "Conchalí", "Huechuraba", "Quilicura", "Colina", "Lampa"],
+  },
 ];
 
 export const NAV = [
@@ -52,7 +92,6 @@ export function SiteNav() {
         >
           <MessageCircle className="size-3.5" /> Cotiza gratis
         </a>
-
       </div>
     </nav>
   );
@@ -79,16 +118,35 @@ export function SiteFooter() {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a
-            href="https://wa.me/56900000000"
+            href={WA_LINK}
             className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-medium text-[var(--forest-deep)] transition-colors hover:bg-[var(--gold-soft)]"
           >
             <MessageCircle className="size-4" /> Escríbenos por WhatsApp
           </a>
           <a
-            href="https://instagram.com"
+            href={TEL_LINK}
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/50 px-6 py-3 text-sm transition-colors hover:bg-[var(--gold)]/10"
+          >
+            <Phone className="size-4" /> {SITE_INFO.phoneDisplay}
+          </a>
+          <a
+            href={SITE_INFO.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-[var(--gold)]/50 px-6 py-3 text-sm transition-colors hover:bg-[var(--gold)]/10"
           >
             <Instagram className="size-4" /> Instagram
+          </a>
+        </div>
+        <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-[var(--cream)]/70">
+          <a href={TEL_LINK} className="inline-flex items-center gap-2 hover:text-[var(--gold)]">
+            <Phone className="size-3.5" /> {SITE_INFO.phoneDisplay}
+          </a>
+          <a
+            href={`mailto:${SITE_INFO.email}`}
+            className="inline-flex items-center gap-2 hover:text-[var(--gold)]"
+          >
+            <Mail className="size-3.5" /> {SITE_INFO.email}
           </a>
         </div>
         <div className="mt-10 flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs text-[var(--cream)]/70">
@@ -163,7 +221,7 @@ export function ServiceHero({
           <span className="rule-gold mt-6" />
           <p className="mt-6 max-w-md leading-relaxed text-[var(--cream)]/80">{text}</p>
           <a
-            href="https://wa.me/56900000000"
+            href={WA_LINK}
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-medium text-[var(--forest-deep)] transition-colors hover:bg-[var(--gold-soft)]"
           >
             <MessageCircle className="size-4" /> Cotiza por WhatsApp
@@ -195,7 +253,6 @@ export function Bullets({ title, items }: { title: string; items: string[] }) {
           ))}
         </ul>
         <CtaInline note="Presupuesto sin costo · Retiro y entrega en tu comuna" />
-
       </div>
     </section>
   );
@@ -221,19 +278,19 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
 
 export function Page({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-background">
+    <div className="bg-background pb-16 lg:pb-0">
       <SiteNav />
       {children}
       <ArbolFranja />
       <CtaBanda />
       <SiteFooter />
       <WhatsAppFab />
+      <MobileCtaBar />
     </div>
   );
 }
 
-
-export const SITE = "https://casatapiz.lovable.app";
+export const SITE = "https://casatapiz.cl";
 
 export function serviceLd({
   name,
@@ -255,7 +312,7 @@ export function serviceLd({
       "@type": "LocalBusiness",
       name: "Casa Tapiz",
       image: logo.url,
-      telephone: "+56900000000",
+      telephone: `+${SITE_INFO.whatsapp}`,
       priceRange: "$$",
       address: {
         "@type": "PostalAddress",

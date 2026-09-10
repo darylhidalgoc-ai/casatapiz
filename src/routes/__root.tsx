@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { Analytics } from "@/components/Analytics";
 import { Toaster } from "@/components/ui/sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -85,18 +86,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
       },
       { name: "author", content: "Casa Tapiz" },
-      { property: "og:title", content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
+      {
+        property: "og:title",
+        content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana",
+      },
       {
         property: "og:description",
-        content: "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
+        content:
+          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Casa Tapiz" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana" },
-      { name: "twitter:description", content: "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/411d8238fa619e0479afa787690a7780/id-preview-1857cb2f--4435ee97-4967-45cf-8d1d-7c1cc8b3b2a9.lovable.app-1786636041047.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/411d8238fa619e0479afa787690a7780/id-preview-1857cb2f--4435ee97-4967-45cf-8d1d-7c1cc8b3b2a9.lovable.app-1786636041047.png" },
+      {
+        name: "twitter:title",
+        content: "Tapicería en Santiago | Casa Tapiz — Región Metropolitana",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Tapicero en Santiago y toda la Región Metropolitana. Renovamos sillones, sillas, cabeceras y más con materiales responsables y cero mueble al vertedero.",
+      },
+      { property: "og:image", content: "https://casatapiz.cl/og-casatapiz.jpg" },
+      { name: "twitter:image", content: "https://casatapiz.cl/og-casatapiz.jpg" },
     ],
     links: [
       {
@@ -141,7 +153,7 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster position="top-center" />
+      <Analytics />
     </QueryClientProvider>
   );
-
 }
