@@ -39,11 +39,15 @@ export type Testimonio = {
   /** 1 a 5. Por defecto 5. */
   rating?: number;
   servicio?: string;
+  /** Texto relativo, ej: "hace 2 meses". */
+  cuando?: string;
+  /** true si la persona es Local Guide de Google. */
+  localGuide?: boolean;
 };
 
 /**
- * Reseñas REALES de clientes. Pega aquí las verdaderas para mostrarlas.
- * Formato de ejemplo (descomenta y reemplaza por datos reales):
+ * Reseñas REALES de clientes (cópialas de tu perfil de Google o de lo que te
+ * hayan escrito). Formato de ejemplo:
  *
  * export const TESTIMONIOS: Testimonio[] = [
  *   {
@@ -52,16 +56,20 @@ export type Testimonio = {
  *     texto: "Quedó como nuevo y retiraron el sillón en mi casa sin que yo moviera nada.",
  *     rating: 5,
  *     servicio: "Sillón de 3 cuerpos",
+ *     cuando: "hace 2 meses",
  *   },
  * ];
- *
- * Mientras el arreglo esté vacío, la sección no muestra testimonios: en su
- * lugar aparece un llamado a dejar la reseña (si configuras GOOGLE_REVIEWS_URL).
  */
 export const TESTIMONIOS: Testimonio[] = [];
 
 /**
- * Enlace a tu perfil de Google Business (o Facebook/Instagram) donde los
- * clientes pueden dejar su reseña. Si lo dejas vacío, no se muestra el botón.
+ * Perfil de Google Business de Casa Tapiz. Al completar `mapsUrl` y
+ * `writeReviewUrl`, el carrusel de reseñas enlaza a tu ficha y aparece el
+ * botón "Escribir una opinión". `rating` y `count` alimentan el badge.
  */
-export const GOOGLE_REVIEWS_URL = "";
+export const GOOGLE = {
+  mapsUrl: "https://g.page/r/CbPWIbYsfEscEAE",
+  writeReviewUrl: "https://g.page/r/CbPWIbYsfEscEAE/review",
+  rating: null as number | null,
+  count: null as number | null,
+};

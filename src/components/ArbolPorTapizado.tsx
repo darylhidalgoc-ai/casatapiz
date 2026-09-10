@@ -1,12 +1,25 @@
+import { Link } from "@tanstack/react-router";
 import { TreePine, Recycle, Sofa, MessageCircle } from "lucide-react";
 
 import { WA_LINK } from "@/components/WhatsAppFab";
 import reforestacion from "@/assets/reforestacion.jpg";
 
 const PUNTOS = [
-  { icon: Sofa, title: "El mueble se salva", text: "Recuperamos la estructura en vez de reemplazarla." },
-  { icon: Recycle, title: "La espuma se reutiliza", text: "Enviamos las espumas a reutilización, no al vertedero." },
-  { icon: TreePine, title: "El árbol se planta", text: "Un árbol nativo por cada tapizado, con Fundación Reforestemos." },
+  {
+    icon: Sofa,
+    title: "El mueble se salva",
+    text: "Recuperamos la estructura en vez de reemplazarla.",
+  },
+  {
+    icon: Recycle,
+    title: "La espuma se reutiliza",
+    text: "Enviamos las espumas a reutilización, no al vertedero.",
+  },
+  {
+    icon: TreePine,
+    title: "El árbol se planta",
+    text: "Un árbol nativo por cada tapizado, con Fundación Reforestemos.",
+  },
 ];
 
 export function ArbolPorTapizado() {
@@ -43,12 +56,24 @@ export function ArbolPorTapizado() {
               </li>
             ))}
           </ul>
-          <a
-            href={WA_LINK}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-medium text-[var(--forest-deep)] transition-colors hover:bg-[var(--gold-soft)]"
-          >
-            <MessageCircle className="size-4" /> Quiero renovar y plantar mi árbol
-          </a>
+          <p className="mt-6 leading-relaxed text-muted-foreground">
+            Y las telas que sobran de cada tapizado las enviamos a <strong>Ecocitex</strong> para
+            reciclarlas y transformarlas en nueva materia prima. Nada termina en la basura.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href={WA_LINK}
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-6 py-3 text-sm font-medium text-[var(--forest-deep)] transition-colors hover:bg-[var(--gold-soft)]"
+            >
+              <MessageCircle className="size-4" /> Quiero renovar y plantar mi árbol
+            </a>
+            <Link
+              to="/compromiso"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--forest)]/25 px-6 py-3 text-sm text-[var(--forest)] transition-colors hover:bg-[var(--forest)]/5"
+            >
+              Ver el compromiso completo
+            </Link>
+          </div>
         </div>
       </div>
     </section>
@@ -61,7 +86,9 @@ export function ArbolFranja() {
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 text-center lg:px-8">
         <TreePine className="size-6 text-[var(--gold)]" strokeWidth={1.5} />
         <p className="text-sm">
-          <span className="font-display text-lg text-[var(--gold)]">Un árbol por cada tapizado</span>{" "}
+          <span className="font-display text-lg text-[var(--gold)]">
+            Un árbol por cada tapizado
+          </span>{" "}
           — junto a Fundación Reforestemos, tapicería verde con huella positiva.
         </p>
         <a

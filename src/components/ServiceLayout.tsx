@@ -61,6 +61,7 @@ export const NAV = [
   { to: "/tapiceria-santiago", label: "Tapicería" },
   { to: "/tapicero-santiago", label: "Tapicero" },
   { to: "/restauracion-de-muebles-santiago", label: "Restauración" },
+  { to: "/compromiso", label: "Compromiso" },
 ];
 
 export function SiteNav() {

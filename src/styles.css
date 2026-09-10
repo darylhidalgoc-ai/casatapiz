@@ -131,3 +131,28 @@
   height: 1px;
   background-color: var(--gold);
 }
+
+/* Carrusel de reseñas en movimiento continuo (se pausa al interactuar). */
+@keyframes reviews-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reviews-track {
+  animation: reviews-scroll 55s linear infinite;
+}
+
+.reviews-track:hover,
+.reviews-track:focus-within {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track {
+    animation: none;
+  }
+}

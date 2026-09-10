@@ -37,7 +37,7 @@ jobs:
           mkdir -p static
           wget -q -r -l 5 -p -k -E -nH -P static http://localhost:3000/ || true
           # Rutas conocidas (por si algún enlace no fue descubierto)
-          for p in tapiceria-santiago tapicero-santiago restauracion-de-muebles-santiago; do
+          for p in tapiceria-santiago tapicero-santiago restauracion-de-muebles-santiago compromiso; do
             wget -q -p -k -E -nH -P static "http://localhost:3000/$p" || true
           done
           cp -f public/robots.txt static/ 2>/dev/null || true
