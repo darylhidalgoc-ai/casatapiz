@@ -24,3 +24,21 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Personalización rápida
+
+Todos los datos operativos están en `src/config/site.ts`:
+
+- **WhatsApp, teléfono, email, Instagram**: cambia ahí y se actualiza en todo el sitio.
+- **Reseñas de clientes**: pega reseñas reales en el arreglo `TESTIMONIOS`. Si además
+  completas `GOOGLE_REVIEWS_URL`, aparece un botón para que los clientes reseñen en Google.
+- **Analítica (GA4 / Meta Pixel)**: define `VITE_GA4_ID` y/o `VITE_META_PIXEL_ID`
+  (ver `.env.example`). Si están vacíos no se carga nada. Se registran los eventos
+  `click_whatsapp`, `click_llamar`, `click_email`, `submit_presupuesto` y `page_view`.
+
+## Despliegue en cPanel
+
+Cada push a `main` ejecuta el workflow `.github/workflows/cpanel.yml`, que compila el
+sitio, genera la versión estática y la sube por FTP a `public_html` (secrets
+`FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`). También queda un artefacto
+`casatapiz-cpanel.zip` descargable por si se necesita subir a mano.

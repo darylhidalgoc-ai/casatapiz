@@ -42,7 +42,26 @@ export type Testimonio = {
 };
 
 /**
- * Reseñas reales de clientes. Mientras esté vacío, la sección de testimonios
- * no se muestra. Agrega aquí las reseñas verdaderas para activarla.
+ * Reseñas REALES de clientes. Pega aquí las verdaderas para mostrarlas.
+ * Formato de ejemplo (descomenta y reemplaza por datos reales):
+ *
+ * export const TESTIMONIOS: Testimonio[] = [
+ *   {
+ *     nombre: "María P.",
+ *     comuna: "Providencia",
+ *     texto: "Quedó como nuevo y retiraron el sillón en mi casa sin que yo moviera nada.",
+ *     rating: 5,
+ *     servicio: "Sillón de 3 cuerpos",
+ *   },
+ * ];
+ *
+ * Mientras el arreglo esté vacío, la sección no muestra testimonios: en su
+ * lugar aparece un llamado a dejar la reseña (si configuras GOOGLE_REVIEWS_URL).
  */
 export const TESTIMONIOS: Testimonio[] = [];
+
+/**
+ * Enlace a tu perfil de Google Business (o Facebook/Instagram) donde los
+ * clientes pueden dejar su reseña. Si lo dejas vacío, no se muestra el botón.
+ */
+export const GOOGLE_REVIEWS_URL = "";
