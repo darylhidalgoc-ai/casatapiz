@@ -14,6 +14,44 @@ export type Database = {
   }
   public: {
     Tables: {
+      gastos: {
+        Row: {
+          categoria: Database["public"]["Enums"]["gasto_categoria"]
+          created_at: string
+          fecha: string
+          id: string
+          monto: number
+          nota: string | null
+          trabajo_id: string
+        }
+        Insert: {
+          categoria: Database["public"]["Enums"]["gasto_categoria"]
+          created_at?: string
+          fecha?: string
+          id?: string
+          monto?: number
+          nota?: string | null
+          trabajo_id: string
+        }
+        Update: {
+          categoria?: Database["public"]["Enums"]["gasto_categoria"]
+          created_at?: string
+          fecha?: string
+          id?: string
+          monto?: number
+          nota?: string | null
+          trabajo_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gastos_trabajo_id_fkey"
+            columns: ["trabajo_id"]
+            isOneToOne: false
+            referencedRelation: "trabajos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       presupuestos: {
         Row: {
           comuna: string
@@ -47,15 +85,107 @@ export type Database = {
         }
         Relationships: []
       }
+      trabajos: {
+        Row: {
+          abono_pagado: boolean
+          cliente: string
+          comuna: string | null
+          created_at: string
+          descripcion: string | null
+          direccion: string | null
+          estado: Database["public"]["Enums"]["trabajo_estado"]
+          fecha: string
+          id: string
+          incluye: string[]
+          numero: string
+          presupuesto_id: string | null
+          saldo_pagado: boolean
+          telefono: string | null
+          valor_total: number
+        }
+        Insert: {
+          abono_pagado?: boolean
+          cliente: string
+          comuna?: string | null
+          created_at?: string
+          descripcion?: string | null
+          direccion?: string | null
+          estado?: Database["public"]["Enums"]["trabajo_estado"]
+          fecha?: string
+          id?: string
+          incluye?: string[]
+          numero: string
+          presupuesto_id?: string | null
+          saldo_pagado?: boolean
+          telefono?: string | null
+          valor_total?: number
+        }
+        Update: {
+          abono_pagado?: boolean
+          cliente?: string
+          comuna?: string | null
+          created_at?: string
+          descripcion?: string | null
+          direccion?: string | null
+          estado?: Database["public"]["Enums"]["trabajo_estado"]
+          fecha?: string
+          id?: string
+          incluye?: string[]
+          numero?: string
+          presupuesto_id?: string | null
+          saldo_pagado?: boolean
+          telefono?: string | null
+          valor_total?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      gasto_categoria:
+        | "espuma"
+        | "tela"
+        | "retiro"
+        | "tapicero"
+        | "costurera"
+        | "otros"
+      trabajo_estado:
+        | "cotizacion"
+        | "aprobada"
+        | "en_taller"
+        | "terminada"
+        | "entregada"
+        | "cancelada"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -182,6 +312,24 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      gasto_categoria: [
+        "espuma",
+        "tela",
+        "retiro",
+        "tapicero",
+        "costurera",
+        "otros",
+      ],
+      trabajo_estado: [
+        "cotizacion",
+        "aprobada",
+        "en_taller",
+        "terminada",
+        "entregada",
+        "cancelada",
+      ],
+    },
   },
 } as const
