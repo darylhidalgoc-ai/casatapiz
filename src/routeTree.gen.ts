@@ -10,14 +10,31 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CompromisoRouteImport } from './routes/compromiso'
 import { Route as RestauracionDeMueblesSantiagoRouteImport } from './routes/restauracion-de-muebles-santiago'
 import { Route as TapiceriaSantiagoRouteImport } from './routes/tapiceria-santiago'
 import { Route as TapiceroSantiagoRouteImport } from './routes/tapicero-santiago'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminImprimirIdRouteImport } from './routes/_authenticated/admin/imprimir.$id'
+import { Route as AuthenticatedAdminTrabajosIndexRouteImport } from './routes/_authenticated/admin/trabajos/index'
+import { Route as AuthenticatedAdminTrabajosIdRouteImport } from './routes/_authenticated/admin/trabajos/$id'
+import { Route as AuthenticatedAdminTrabajosNuevoRouteImport } from './routes/_authenticated/admin/trabajos/nuevo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CompromisoRoute = CompromisoRouteImport.update({
@@ -41,55 +58,133 @@ const TapiceroSantiagoRoute = TapiceroSantiagoRouteImport.update({
   path: '/tapicero-santiago',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminImprimirIdRoute =
+  AuthenticatedAdminImprimirIdRouteImport.update({
+    id: '/imprimir/$id',
+    path: '/imprimir/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminTrabajosIndexRoute =
+  AuthenticatedAdminTrabajosIndexRouteImport.update({
+    id: '/trabajos/',
+    path: '/trabajos/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminTrabajosIdRoute =
+  AuthenticatedAdminTrabajosIdRouteImport.update({
+    id: '/trabajos/$id',
+    path: '/trabajos/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminTrabajosNuevoRoute =
+  AuthenticatedAdminTrabajosNuevoRouteImport.update({
+    id: '/trabajos/nuevo',
+    path: '/trabajos/nuevo',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/compromiso': typeof CompromisoRoute
   '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/imprimir/$id': typeof AuthenticatedAdminImprimirIdRoute
+  '/admin/trabajos/$id': typeof AuthenticatedAdminTrabajosIdRoute
+  '/admin/trabajos/nuevo': typeof AuthenticatedAdminTrabajosNuevoRoute
+  '/admin/trabajos/': typeof AuthenticatedAdminTrabajosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/compromiso': typeof CompromisoRoute
   '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/imprimir/$id': typeof AuthenticatedAdminImprimirIdRoute
+  '/admin/trabajos/$id': typeof AuthenticatedAdminTrabajosIdRoute
+  '/admin/trabajos/nuevo': typeof AuthenticatedAdminTrabajosNuevoRoute
+  '/admin/trabajos': typeof AuthenticatedAdminTrabajosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/compromiso': typeof CompromisoRoute
   '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/imprimir/$id': typeof AuthenticatedAdminImprimirIdRoute
+  '/_authenticated/admin/trabajos/$id': typeof AuthenticatedAdminTrabajosIdRoute
+  '/_authenticated/admin/trabajos/nuevo': typeof AuthenticatedAdminTrabajosNuevoRoute
+  '/_authenticated/admin/trabajos/': typeof AuthenticatedAdminTrabajosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/compromiso'
     | '/restauracion-de-muebles-santiago'
     | '/tapiceria-santiago'
     | '/tapicero-santiago'
+    | '/admin'
+    | '/admin/'
+    | '/admin/imprimir/$id'
+    | '/admin/trabajos/$id'
+    | '/admin/trabajos/nuevo'
+    | '/admin/trabajos/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/compromiso'
     | '/restauracion-de-muebles-santiago'
     | '/tapiceria-santiago'
     | '/tapicero-santiago'
+    | '/admin'
+    | '/admin/imprimir/$id'
+    | '/admin/trabajos/$id'
+    | '/admin/trabajos/nuevo'
+    | '/admin/trabajos'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/compromiso'
     | '/restauracion-de-muebles-santiago'
     | '/tapiceria-santiago'
     | '/tapicero-santiago'
+    | '/_authenticated/admin'
+    | '/_authenticated/admin/'
+    | '/_authenticated/admin/imprimir/$id'
+    | '/_authenticated/admin/trabajos/$id'
+    | '/_authenticated/admin/trabajos/nuevo'
+    | '/_authenticated/admin/trabajos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   CompromisoRoute: typeof CompromisoRoute
   RestauracionDeMueblesSantiagoRoute: typeof RestauracionDeMueblesSantiagoRoute
   TapiceriaSantiagoRoute: typeof TapiceriaSantiagoRoute
@@ -103,6 +198,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/compromiso': {
@@ -133,11 +242,85 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TapiceroSantiagoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/imprimir/$id': {
+      id: '/_authenticated/admin/imprimir/$id'
+      path: '/imprimir/$id'
+      fullPath: '/admin/imprimir/$id'
+      preLoaderRoute: typeof AuthenticatedAdminImprimirIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/trabajos/': {
+      id: '/_authenticated/admin/trabajos/'
+      path: '/trabajos'
+      fullPath: '/admin/trabajos/'
+      preLoaderRoute: typeof AuthenticatedAdminTrabajosIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/trabajos/$id': {
+      id: '/_authenticated/admin/trabajos/$id'
+      path: '/trabajos/$id'
+      fullPath: '/admin/trabajos/$id'
+      preLoaderRoute: typeof AuthenticatedAdminTrabajosIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/trabajos/nuevo': {
+      id: '/_authenticated/admin/trabajos/nuevo'
+      path: '/trabajos/nuevo'
+      fullPath: '/admin/trabajos/nuevo'
+      preLoaderRoute: typeof AuthenticatedAdminTrabajosNuevoRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminImprimirIdRoute: typeof AuthenticatedAdminImprimirIdRoute
+  AuthenticatedAdminTrabajosIdRoute: typeof AuthenticatedAdminTrabajosIdRoute
+  AuthenticatedAdminTrabajosNuevoRoute: typeof AuthenticatedAdminTrabajosNuevoRoute
+  AuthenticatedAdminTrabajosIndexRoute: typeof AuthenticatedAdminTrabajosIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminImprimirIdRoute: AuthenticatedAdminImprimirIdRoute,
+  AuthenticatedAdminTrabajosIdRoute: AuthenticatedAdminTrabajosIdRoute,
+  AuthenticatedAdminTrabajosNuevoRoute: AuthenticatedAdminTrabajosNuevoRoute,
+  AuthenticatedAdminTrabajosIndexRoute: AuthenticatedAdminTrabajosIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   CompromisoRoute: CompromisoRoute,
   RestauracionDeMueblesSantiagoRoute: RestauracionDeMueblesSantiagoRoute,
   TapiceriaSantiagoRoute: TapiceriaSantiagoRoute,
