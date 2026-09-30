@@ -91,7 +91,7 @@ function ReviewCard({ r }: { r: Testimonio }) {
         </div>
       </div>
       <div className="mt-3">
-        <Stars rating={r.rating} />
+        <Stars rating={r.rating ?? 5} />
       </div>
       <blockquote className="mt-3 line-clamp-4 flex-1 text-sm leading-relaxed text-muted-foreground">
         “{r.texto}”

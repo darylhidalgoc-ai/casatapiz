@@ -42,7 +42,7 @@ function Nuevo() {
 
   async function guardar(e: React.FormEvent) {
     e.preventDefault();
-    if (!f.cliente.trim()) return toast.error("Falta el nombre del cliente");
+    if (!f.cliente.trim()) { toast.error("Falta el nombre del cliente"); return; }
     setSaving(true);
     const { data, error } = await supabase
       .from("trabajos")
@@ -60,7 +60,7 @@ function Nuevo() {
       .select("id")
       .single();
     setSaving(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Cotización creada");
     nav({ to: "/admin/trabajos/$id", params: { id: data.id } });
   }

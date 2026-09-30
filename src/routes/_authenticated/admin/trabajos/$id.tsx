@@ -42,16 +42,16 @@ function Detalle() {
 
   async function update(patch: Partial<Trabajo>) {
     const { error } = await supabase.from("trabajos").update(patch).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     refetch();
     qc.invalidateQueries({ queryKey: ["trabajos"] });
   }
   async function agregarGasto(e: React.FormEvent) {
     e.preventDefault();
     const m = parseInt(monto.replace(/\D/g, "") || "0", 10);
-    if (!m) return toast.error("Ingresa un monto");
+    if (!m) { toast.error("Ingresa un monto"); return; }
     const { error } = await supabase.from("gastos").insert({ trabajo_id: id, categoria: cat, monto: m, nota: nota || null, fecha });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setMonto(""); setNota("");
     refetch();
   }
