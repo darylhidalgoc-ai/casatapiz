@@ -40,9 +40,9 @@ function AuthPage() {
             options: { emailRedirectTo: `${window.location.origin}/admin` },
           });
     setLoading(false);
-    if (res.error) return toast.error(res.error.message);
+    if (res.error) { toast.error(res.error.message); return; }
     if (modo === "registro" && !res.data.session) {
-      return toast.success("Revisa tu correo para confirmar la cuenta.");
+      { toast.success("Revisa tu correo para confirmar la cuenta."); return; }
     }
     nav({ to: "/admin" });
   }

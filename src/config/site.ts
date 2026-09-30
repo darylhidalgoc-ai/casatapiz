@@ -28,8 +28,8 @@ export const TEL_LINK = `tel:+${SITE.whatsapp}`;
  * (VITE_GA4_ID y VITE_META_PIXEL_ID). Si están vacíos, no se carga nada.
  */
 export const ANALYTICS = {
-  ga4Id: (import.meta.env.VITE_GA4_ID as string | undefined)?.trim() ?? "",
-  metaPixelId: (import.meta.env.VITE_META_PIXEL_ID as string | undefined)?.trim() ?? "",
+  ga4Id: (import.meta.env['VITE_GA4_ID'] as string | undefined)?.trim() ?? "",
+  metaPixelId: (import.meta.env['VITE_META_PIXEL_ID'] as string | undefined)?.trim() ?? "",
 };
 
 export type Testimonio = {
