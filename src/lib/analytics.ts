@@ -35,9 +35,9 @@ function initMetaPixel(pixelId: string): void {
     queue.push(args);
   };
   const stub = fbq as unknown as Record<string, unknown>;
-  stub.queue = queue;
-  stub.loaded = true;
-  stub.version = "2.0";
+  stub["queue"] = queue;
+  stub["loaded"] = true;
+  stub["version"] = "2.0";
   window.fbq = fbq;
   window._fbq = fbq;
   fbq("init", pixelId);
