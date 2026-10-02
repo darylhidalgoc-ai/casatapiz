@@ -40,9 +40,14 @@ jobs:
           wget -q -r -l 5 -p -k -E -nH -P static http://localhost:3000/ || true
           cp -f public/robots.txt static/ 2>/dev/null || true
           cp -f public/sitemap.xml static/ 2>/dev/null || true
+          # Todos los archivos JS/CSS del navegador (incluye los del panel /admin).
+          cp -rn .output/public/. static/
+          # Páginas del panel privado: se cargan en el navegador y usan Lovable Cloud.
+          curl -sf http://localhost:3000/auth -o static/auth.html
+          curl -sf http://localhost:3000/admin -o static/admin.html
           # Verificación: todas las páginas esperadas deben existir.
-          for p in index tapiceria-santiago tapicero-santiago restauracion-de-muebles-santiago compromiso; do
-            test -f "static/$p.html" || { echo "FALTA static/$p.html"; exit 1; }
+          for p in index tapiceria-santiago tapicero-santiago restauracion-de-muebles-santiago compromiso auth admin; do
+            test -s "static/$p.html" || { echo "FALTA static/$p.html"; exit 1; }
           done
           ls -la static
 
@@ -52,6 +57,9 @@ jobs:
           Options -MultiViews
           DirectoryIndex index.html
           RewriteEngine On
+
+          # Panel privado: cualquier ruta /admin/... la resuelve la app en el navegador.
+          RewriteRule ^admin(/.*)?$ admin.html [L]
 
           # Mantener URLs limpias: /tapicero-santiago sirve tapicero-santiago.html.
           RewriteCond %{REQUEST_FILENAME} !-d
