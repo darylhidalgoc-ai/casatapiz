@@ -1,5 +1,5 @@
 import { PresupuestoForm } from "@/components/PresupuestoForm";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import {
   Bullets,
@@ -85,6 +85,14 @@ function TapiceriaPage() {
           "Muebles de oficina, cafés y locales comerciales",
         ]}
       />
+
+      <p className="mx-auto max-w-6xl px-6 pb-4 text-sm text-muted-foreground lg:px-8">
+        ¿Buscas renovar tu sofá? Conoce nuestro servicio de{" "}
+        <Link to="/tapizado-de-sofas-santiago" className="text-[var(--forest)] underline underline-offset-4">
+          tapizado de sofás
+        </Link>
+        .
+      </p>
 
       <ComunasGrid intro="Retiramos y entregamos tu mueble en Santiago Centro, sector oriente, sur, norte y poniente. Escríbenos con tu comuna y te confirmamos día de retiro." />
 
