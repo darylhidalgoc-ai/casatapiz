@@ -303,11 +303,6 @@ function SofasPage() {
         </div>
       </section>
 
-      <section className="bg-background pt-16 lg:pt-24">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <h2 className="text-3xl lg:text-4xl">Retiro y entrega de sofás en Santiago</h2>
-        </div>
-      </section>
       <ComunasGrid intro="Retiramos tu sofá y lo entregamos renovado dentro de nuestra cobertura en la Región Metropolitana. Escríbenos tu comuna y coordinamos." />
 
       <Faq items={FAQ} />

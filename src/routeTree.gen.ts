@@ -16,6 +16,7 @@ import { Route as CompromisoRouteImport } from './routes/compromiso'
 import { Route as RestauracionDeMueblesSantiagoRouteImport } from './routes/restauracion-de-muebles-santiago'
 import { Route as TapiceriaSantiagoRouteImport } from './routes/tapiceria-santiago'
 import { Route as TapiceroSantiagoRouteImport } from './routes/tapicero-santiago'
+import { Route as TapizadoDeSofasSantiagoRouteImport } from './routes/tapizado-de-sofas-santiago'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedAdminImprimirIdRouteImport } from './routes/_authenticated/admin/imprimir.$id'
@@ -56,6 +57,11 @@ const TapiceriaSantiagoRoute = TapiceriaSantiagoRouteImport.update({
 const TapiceroSantiagoRoute = TapiceroSantiagoRouteImport.update({
   id: '/tapicero-santiago',
   path: '/tapicero-santiago',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TapizadoDeSofasSantiagoRoute = TapizadoDeSofasSantiagoRouteImport.update({
+  id: '/tapizado-de-sofas-santiago',
+  path: '/tapizado-de-sofas-santiago',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
+  '/tapizado-de-sofas-santiago': typeof TapizadoDeSofasSantiagoRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/admin/': typeof AuthenticatedAdminIndexRoute
   '/admin/imprimir/$id': typeof AuthenticatedAdminImprimirIdRoute
@@ -114,6 +121,7 @@ export interface FileRoutesByTo {
   '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
+  '/tapizado-de-sofas-santiago': typeof TapizadoDeSofasSantiagoRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
   '/admin/imprimir/$id': typeof AuthenticatedAdminImprimirIdRoute
   '/admin/trabajos/$id': typeof AuthenticatedAdminTrabajosIdRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/restauracion-de-muebles-santiago': typeof RestauracionDeMueblesSantiagoRoute
   '/tapiceria-santiago': typeof TapiceriaSantiagoRoute
   '/tapicero-santiago': typeof TapiceroSantiagoRoute
+  '/tapizado-de-sofas-santiago': typeof TapizadoDeSofasSantiagoRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/admin/imprimir/$id': typeof AuthenticatedAdminImprimirIdRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/restauracion-de-muebles-santiago'
     | '/tapiceria-santiago'
     | '/tapicero-santiago'
+    | '/tapizado-de-sofas-santiago'
     | '/admin'
     | '/admin/'
     | '/admin/imprimir/$id'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/restauracion-de-muebles-santiago'
     | '/tapiceria-santiago'
     | '/tapicero-santiago'
+    | '/tapizado-de-sofas-santiago'
     | '/admin'
     | '/admin/imprimir/$id'
     | '/admin/trabajos/$id'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/restauracion-de-muebles-santiago'
     | '/tapiceria-santiago'
     | '/tapicero-santiago'
+    | '/tapizado-de-sofas-santiago'
     | '/_authenticated/admin'
     | '/_authenticated/admin/'
     | '/_authenticated/admin/imprimir/$id'
@@ -189,6 +201,7 @@ export interface RootRouteChildren {
   RestauracionDeMueblesSantiagoRoute: typeof RestauracionDeMueblesSantiagoRoute
   TapiceriaSantiagoRoute: typeof TapiceriaSantiagoRoute
   TapiceroSantiagoRoute: typeof TapiceroSantiagoRoute
+  TapizadoDeSofasSantiagoRoute: typeof TapizadoDeSofasSantiagoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -240,6 +253,13 @@ declare module '@tanstack/react-router' {
       path: '/tapicero-santiago'
       fullPath: '/tapicero-santiago'
       preLoaderRoute: typeof TapiceroSantiagoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tapizado-de-sofas-santiago': {
+      id: '/tapizado-de-sofas-santiago'
+      path: '/tapizado-de-sofas-santiago'
+      fullPath: '/tapizado-de-sofas-santiago'
+      preLoaderRoute: typeof TapizadoDeSofasSantiagoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -325,6 +345,7 @@ const rootRouteChildren: RootRouteChildren = {
   RestauracionDeMueblesSantiagoRoute: RestauracionDeMueblesSantiagoRoute,
   TapiceriaSantiagoRoute: TapiceriaSantiagoRoute,
   TapiceroSantiagoRoute: TapiceroSantiagoRoute,
+  TapizadoDeSofasSantiagoRoute: TapizadoDeSofasSantiagoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
